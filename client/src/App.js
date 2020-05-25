@@ -14,9 +14,16 @@ class App extends Component {
             .then(res => this.setState({ apiResponse: res }))
             .catch(err => err);
     }
+    callDB() {
+        fetch("http://localhost:9000/testDB")
+            .then(res => res.text())
+            .then(res => this.setState({ dbResponse: res }))
+            .catch(err => err);
+    }
 
     componentDidMount() {
         this.callAPI();
+        this.callDB();
     }
 
     render() {
@@ -24,9 +31,10 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
+                    <h1 className="App-title">Bienvenue !!</h1>
                 </header>
                 <p className="App-intro">{this.state.apiResponse}</p>
+                <p className="App-intro">{this.state.dbResponse}</p>
             </div>
         );
     }
